@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>College Planner</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+    <div class="app">
+
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h1 class="logo">planner</h1>
+            <nav>
+                <button class="nav-btn active" data-page="schedule">📅 Расписание</button>
+                <button class="nav-btn" data-page="homework">📚 Домашние задания</button>
+            </nav>
+        </aside>
+
+        <!-- Main -->
+        <main class="content">
+
+            <!--Schedule-->
+            <section class="page active" id = "schedule">
+                <h2>Расписание занятий</h2>
+
+                <div class="day">
+                    <h3>Понедельник</h3>
+
+                      <div class="card">
+                        <p class="subject">Математика</p>
+                        <span class="time">08:30 – 10:00</span>
+                      </div>
+
+                      <div class="card">
+                        <p class="subject">Программирование</p>
+                        <span class="time">10:10 – 11:40</span>
+                      </div>
+                </div>
+            </section>
+
+            <!-- homework-->
+            <section class="page" id = "homework">
+                <h2>Домашние задания</h2>
+               <button class="add-btn">＋ Добавить задание</button>
+
+                    <div class="modal hidden">
+                      <div class="modal-content">
+                        <h3>Новое домашнее задание</h3>
+
+                        <input type="text" id="subject" placeholder="Дисциплина">
+                        <textarea id="task" placeholder="Описание задания"></textarea>
+                        <input type="date" id="deadline">
+
+                        <button id="save">Сохранить</button>
+                      </div>
+                    </div>
+
+
+            </section>
+        </main>
+
+    </div>
+</body>
+ <script src="script.js"></script>
+</html>
