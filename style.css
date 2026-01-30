@@ -166,5 +166,111 @@ h2 {
     border-radius:12px;
 }
 
+.hw-top {
+    display:flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
 
+.hw-top label {
+    display:flex;
+    gap: 10px;
+    align-items: center;
+}
 
+.delete-btn {
+    background:transparent;
+    border: none;
+    color: #ff6fae;
+    font-size: 16px;
+    cursor:pointer;
+}
+
+.card.done {
+    opacity: 0.6;
+}
+
+.card.done .task {
+    text-decoration: line-through;
+}
+
+.schedule-grid {
+    display:grid;
+    grid-template-column: 80px repeat(5, 1fr);
+    gap: 10px;
+}
+
+.cell {
+    background: #fff;
+    border-radius: 14px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(255, 111, 174,0.15);
+}
+
+.header {
+    background:#ffe0ec;
+    font-weight: 500;
+}
+
+.time {
+    background: #fff5fa;
+    font-size: 14px;
+}
+
+.lesson {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.lesson:hover {
+    background: #ffe0ec;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.day-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  box-shadow: 0 15px 40px rgba(255,111,174,0.2);
+}
+
+.day-card h3 {
+  text-align: center;
+  margin-bottom: 14px;
+  color: #ff4f9a;
+}
+
+.lesson-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.lesson {
+  background: #fff5fa;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  gap: 10px;
+}
+
+.lesson::before {
+  content: attr(data-time);
+  font-weight: 500;
+  color: #ff6fae;
+  min-width: 48px;
+}
+
+.lesson:hover {
+  background: #ffe0ec;
+}
