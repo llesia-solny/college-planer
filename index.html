@@ -27,23 +27,78 @@
         <main class="content">
 
             <!--Schedule-->
-            <section class="page active" id = "schedule">
-                <h2>Расписание занятий</h2>
+            <section class="page active" id="schedule">
+              <h2>Расписание занятий</h2>
 
-                <div class="day">
-                    <h3>Понедельник</h3>
+              <div class="week-grid">
 
-                      <div class="card">
-                        <p class="subject">Математика</p>
-                        <span class="time">08:30 – 10:00</span>
-                      </div>
-
-                      <div class="card">
-                        <p class="subject">Программирование</p>
-                        <span class="time">10:10 – 11:40</span>
-                      </div>
+                <div class="day-card" data-day="mon">
+                  <h3>Понедельник</h3>
+                  <ul class="lesson-list">
+                    <li class="lesson" data-time="08:30"></li>
+                    <li class="lesson" data-time="10:10"></li>
+                    <li class="lesson" data-time="12:00"></li>
+                  </ul>
                 </div>
+
+                <div class="day-card" data-day="tue">
+                  <h3>Вторник</h3>
+                  <ul class="lesson-list">
+                    <li class="lesson" data-time="08:30"></li>
+                    <li class="lesson" data-time="10:10"></li>
+                    <li class="lesson" data-time="12:00"></li>
+                  </ul>
+                </div>
+
+                <div class="day-card" data-day="wed">
+                  <h3>Среда</h3>
+                  <ul class="lesson-list">
+                    <li class="lesson" data-time="08:30"></li>
+                    <li class="lesson" data-time="10:10"></li>
+                    <li class="lesson" data-time="12:00"></li>
+                  </ul>
+                </div>
+
+                <div class="day-card" data-day="thu">
+                  <h3>Четверг</h3>
+                  <ul class="lesson-list">
+                    <li class="lesson" data-time="08:30"></li>
+                    <li class="lesson" data-time="10:10"></li>
+                    <li class="lesson" data-time="12:00"></li>
+                  </ul>
+                </div>
+
+                <div class="day-card" data-day="fri">
+                  <h3>Пятница</h3>
+                  <ul class="lesson-list">
+                    <li class="lesson" data-time="08:30"></li>
+                    <li class="lesson" data-time="10:10"></li>
+                    <li class="lesson" data-time="12:00"></li>
+                  </ul>
+                </div>
+
+                <div class="day-card" data-day="sat">
+                  <h3>Суббота</h3>
+                  <ul class="lesson-list">
+                    <li class="lesson" data-time="08:30"></li>
+                    <li class="lesson" data-time="10:10"></li>
+                    <li class="lesson" data-time="12:00"></li>
+                  </ul>
+                </div>
+
+                <div class="day-card" data-day="sun">
+                  <h3>Воскресенье</h3>
+                  <ul class="lesson-list">
+                    <li class="lesson" data-time="08:30"></li>
+                    <li class="lesson" data-time="10:10"></li>
+                    <li class="lesson" data-time="12:00"></li>
+                  </ul>
+                </div>
+
+              </div>
             </section>
+
+
 
             <!-- homework-->
             <section class="page" id = "homework">
@@ -64,6 +119,16 @@
 
 
             </section>
+
+          <div class="modal hidden" id="lessonModal">
+          <div class="modal-content">
+            <h3>Пара</h3>
+            <input type="text" id="lessonName" placeholder="Название предмета">
+            <button id="saveLesson">Сохранить</button>
+            <button id="deleteLesson" class="delete-btn">Удалить</button>
+          </div>
+        </div>
+
         </main>
 
     </div>
