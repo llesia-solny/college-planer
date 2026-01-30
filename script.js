@@ -27,7 +27,11 @@ saveBtn.onclick = () => {
 
   if (!subject || !task || !deadline) return;
 
-  const hw = { subject, task, deadline };
+  const hw = { subject,
+   task,
+   deadline,
+    done: false
+    };
   homeworkList.push(hw);
 
   localStorage.setItem('homework', JSON.stringify(homeworkList));
@@ -39,18 +43,91 @@ saveBtn.onclick = () => {
 function renderHomework() {
   document.querySelectorAll('.homework-card').forEach(e => e.remove());
 
-  homeworkList.forEach(hw => {
+  homeworkList.forEach((hw, index) => {
     const div = document.createElement('div');
     div.className = 'card homework homework-card';
 
+    if (hw.done) {
+      div.classList.add('done');
+    }
+
     div.innerHTML = `
-      <p class="subject">${hw.subject}</p>
+      <div class="hw-top">
+        <label>
+          <input type="checkbox" ${hw.done ? 'checked' : ''}>
+          <span class="subject">${hw.subject}</span>
+        </label>
+        <button class="delete-btn">✖</button>
+      </div>
+
       <p class="task">${hw.task}</p>
       <span class="deadline">до ${hw.deadline}</span>
     `;
+
+
+    // чекбокс "выполнено"
+    div.querySelector('input').addEventListener('change', () => {
+      hw.done = !hw.done;
+      localStorage.setItem('homework', JSON.stringify(homeworkList));
+      renderHomework();
+    });
+
+    // удаление
+    div.querySelector('.delete-btn').addEventListener('click', () => {
+      homeworkList.splice(index, 1);
+      localStorage.setItem('homework', JSON.stringify(homeworkList));
+      renderHomework();
+    });
+
 
     homeworkPage.appendChild(div);
   });
 }
 
 renderHomework();
+
+const lessonModal = document.getElementById('lessonModal');
+const lessonNameInput = document.getElementById('lessonName');
+const saveLessonBtn = document.getElementById('saveLesson');
+const deleteLessonBtn = document.getElementById('deleteLesson');
+
+let schedule = JSON.parse(localStorage.getItem('schedule')) || {};
+let currentLesson = null;
+
+document.querySelectorAll('.lesson').forEach(lesson => {
+  const day = lesson.closest('.day-card').dataset.day;
+  const time = lesson.dataset.time;
+  const key = day + '_' + time;
+
+  if (schedule[key]) {
+    lesson.textContent = schedule[key];
+  }
+
+  lesson.addEventListener('click', () => {
+    currentLesson = { lesson, key };
+    document.getElementById('lessonName').value = lesson.textContent;
+    document.getElementById('lessonModal').classList.remove('hidden');
+  });
+});
+
+document.getElementById('saveLesson').onclick = () => {
+  if (!currentLesson) return;
+
+  const value = document.getElementById('lessonName').value;
+  currentLesson.lesson.textContent = value;
+  schedule[currentLesson.key] = value;
+
+  localStorage.setItem('schedule', JSON.stringify(schedule));
+  document.getElementById('lessonModal').classList.add('hidden');
+};
+
+document.getElementById('deleteLesson').onclick = () => {
+  if (!currentLesson) return;
+
+  currentLesson.lesson.textContent = '';
+  delete schedule[currentLesson.key];
+
+  localStorage.setItem('schedule', JSON.stringify(schedule));
+  document.getElementById('lessonModal').classList.add('hidden');
+};
+
