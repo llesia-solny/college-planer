@@ -238,7 +238,7 @@ h2 {
   content: attr(data-time);
   font-weight: 500;
   color: #d36b8b;
-  min-width: 48px;
+
 }
 
 .lesson:hover {
@@ -361,4 +361,58 @@ h2 {
     padding: 16px;
   }
 }
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+#saveLesson {
+  background: #ffd1dc;
+  color: #444;
+}
+
+.delete-btn {
+  background: #fddde6;
+  color: #444;
+}
+
+.add-lesson-btn {
+  background: #ffd1dc;
+  color: #444;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.add-lesson-btn:hover {
+  background: #fddde6;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+#saveLesson {
+  background: #ffd1dc;
+  color: #444;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.delete-btn {
+  background: #fddde6;
+  color: #444;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+
 
