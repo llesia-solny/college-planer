@@ -7,133 +7,108 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
-
 </head>
-
 <body>
-    <div class="app">
+<div class="app">
 
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h1 class="logo">Planner</h1>
+        <nav>
+            <button class="nav-btn active" data-page="schedule">📅 Расписание</button>
+            <button class="nav-btn" data-page="homework">📚 Домашние задания</button>
+        </nav>
+    </aside>
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h1 class="logo">planner</h1>
+    <!-- Main -->
+    <main class="content">
 
+        <!-- Schedule -->
+        <section class="page active" id="schedule">
+            <h2>Расписание занятий</h2>
+            <div class="week-grid">
 
-            <nav>
-                <button class="nav-btn active" data-page="schedule">📅 Расписание</button>
-                <button class="nav-btn" data-page="homework">📚 Домашние задания</button>
-            </nav>
-        </aside>
-
-        <!-- Main -->
-        <main class="content">
-
-            <!--Schedule-->
-            <section class="page active" id="schedule">
-              <h2>Расписание занятий</h2>
-
-              <div class="week-grid">
-
+                <!-- День шаблон -->
                 <div class="day-card" data-day="mon">
-                  <h3>Понедельник</h3>
-                  <ul class="lesson-list">
-                    <li class="lesson" data-time="08:30" data-day="mon"></li>
-                    <li class="lesson" data-time="10:10" data-day="mon"></li>
-                    <li class="lesson" data-time="12:00" data-day="mon"></li>
-                  </ul>
+                    <h3>Понедельник</h3>
+                    <ul class="lesson-list"></ul>
+                    <button class="add-lesson-btn">＋ Добавить пару</button>
                 </div>
 
                 <div class="day-card" data-day="tue">
-                  <h3>Вторник</h3>
-                  <ul class="lesson-list">
-                    <li class="lesson" data-time="08:30" data-day="tue"></li>
-                    <li class="lesson" data-time="10:10" data-day="tue"></li>
-                    <li class="lesson" data-time="12:00" data-day="tue"></li>
-                  </ul>
+                    <h3>Вторник</h3>
+                    <ul class="lesson-list"></ul>
+                    <button class="add-lesson-btn">＋ Добавить пару</button>
                 </div>
 
                 <div class="day-card" data-day="wed">
-                  <h3>Среда</h3>
-                  <ul class="lesson-list">
-                    <li class="lesson" data-time="08:30" data-day="wed"></li>
-                    <li class="lesson" data-time="10:10" data-day="wed"></li>
-                    <li class="lesson" data-time="12:00" data-day="wed"></li>
-                  </ul>
+                    <h3>Среда</h3>
+                    <ul class="lesson-list"></ul>
+                    <button class="add-lesson-btn">＋ Добавить пару</button>
                 </div>
 
                 <div class="day-card" data-day="thu">
-                  <h3>Четверг</h3>
-                  <ul class="lesson-list">
-                    <li class="lesson" data-time="08:30" data-day="thu"></li>
-                    <li class="lesson" data-time="10:10" data-day="thu"></li>
-                    <li class="lesson" data-time="12:00" data-day="thu"></li>
-                  </ul>
+                    <h3>Четверг</h3>
+                    <ul class="lesson-list"></ul>
+                    <button class="add-lesson-btn">＋ Добавить пару</button>
                 </div>
 
                 <div class="day-card" data-day="fri">
-                  <h3>Пятница</h3>
-                  <ul class="lesson-list">
-                    <li class="lesson" data-time="08:30" data-day="fri"></li>
-                    <li class="lesson" data-time="10:10" data-day="fri"></li>
-                    <li class="lesson" data-time="12:00" data-day="fri"></li>
-                  </ul>
+                    <h3>Пятница</h3>
+                    <ul class="lesson-list"></ul>
+                    <button class="add-lesson-btn">＋ Добавить пару</button>
                 </div>
 
                 <div class="day-card" data-day="sat">
-                  <h3>Суббота</h3>
-                  <ul class="lesson-list">
-                    <li class="lesson" data-time="08:30" data-day="sat"></li>
-                    <li class="lesson" data-time="10:10" data-day="sat"></li>
-                    <li class="lesson" data-time="12:00" data-day="sat"></li>
-                  </ul>
+                    <h3>Суббота</h3>
+                    <ul class="lesson-list"></ul>
+                    <button class="add-lesson-btn">＋ Добавить пару</button>
                 </div>
 
                 <div class="day-card" data-day="sun">
-                  <h3>Воскресенье</h3>
-                  <ul class="lesson-list">
-                    <li class="lesson" data-time="08:30" data-day="sun"></li>
-                    <li class="lesson" data-time="10:10" data-day="sun"></li>
-                    <li class="lesson" data-time="12:00" data-day="sun"></li>
-                  </ul>
+                    <h3>Воскресенье</h3>
+                    <ul class="lesson-list"></ul>
+                    <button class="add-lesson-btn">＋ Добавить пару</button>
                 </div>
 
-              </div>
-            </section>
+            </div>
+        </section>
 
+        <!-- Homework -->
+        <section class="page" id="homework">
+            <h2>Домашние задания</h2>
+            <button class="add-btn">＋ Добавить задание</button>
+        </section>
 
+    </main>
 
-            <!-- homework-->
-            <section class="page" id = "homework">
-                <h2>Домашние задания</h2>
-               <button class="add-btn">＋ Добавить задание</button>
+</div>
 
-                    <div class="modal hidden">
-                      <div class="modal-content">
-                        <h3>Новое домашнее задание</h3>
-
-                        <input type="text" id="subject" placeholder="Дисциплина">
-                        <textarea id="task" placeholder="Описание задания"></textarea>
-                        <input type="date" id="deadline">
-
-                        <button id="save">Сохранить</button>
-                      </div>
-                    </div>
-
-
-            </section>
-
-          <div class="modal hidden" id="lessonModal">
-          <div class="modal-content">
-            <h3>Пара</h3>
-            <input type="text" id="lessonName" placeholder="Название предмета">
-            <button id="saveLesson">Сохранить</button>
+<!-- Lesson Modal -->
+<div class="modal hidden" id="lessonModal">
+    <div class="modal-content">
+        <h3>Пара</h3>
+        <input type="text" id="lessonName" placeholder="Название предмета">
+        <input type="time" id="lessonStart">
+        <input type="time" id="lessonEnd">
+        <div class="modal-buttons">
             <button id="deleteLesson" class="delete-btn">Удалить</button>
-          </div>
+            <button id="saveLesson">Сохранить</button>
         </div>
-
-        </main>
-
     </div>
+</div>
+
+<!-- Homework Modal -->
+<div class="modal hidden" id="homeworkModal">
+    <div class="modal-content">
+        <h3>Новое домашнее задание</h3>
+        <input type="text" id="subject" placeholder="Дисциплина">
+        <textarea id="task" placeholder="Описание задания"></textarea>
+        <input type="date" id="deadline">
+        <button id="saveHomework">Сохранить</button>
+    </div>
+</div>
+
+<script src="script.js"></script>
 </body>
- <script src="script.js"></script>
 </html>
