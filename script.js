@@ -1,17 +1,24 @@
 let editingHomeworkId = null;
 
+let weekOffset = 0;
+
 // ================= NAVIGATION =================
 const navButtons = document.querySelectorAll('.nav-btn');
 const pages = document.querySelectorAll('.page');
 
 navButtons.forEach(btn => {
   btn.addEventListener('click', () => {
-    navButtons.forEach(b => b.classList.remove('active'));
-    pages.forEach(p => p.classList.remove('active'));
+  navButtons.forEach(b => b.classList.remove('active'));
+  pages.forEach(p => p.classList.remove('active'));
 
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.page).classList.add('active');
-  });
+  btn.classList.add('active');
+  document.getElementById(btn.dataset.page).classList.add('active');
+
+  if (btn.dataset.page === 'calendar') {
+    renderCalendar();
+  }
+});
+
 });
 
 const STORAGE_KEY = 'college_planner_state';
@@ -166,9 +173,11 @@ saveHomework.addEventListener('click', () => {
     });
   }
 
-  saveState();
-  renderHomeworks();
-  homeworkModal.classList.add('hidden');
+    saveState();
+    renderHomeworks();
+    renderCalendar();
+    homeworkModal.classList.add('hidden');
+
 });
 
 
@@ -250,3 +259,62 @@ const todayCard = document.querySelector(`.day-card[data-day="${today}"]`);
 if (todayCard) {
   todayCard.classList.add('today');
 }
+
+function renderCalendar() {
+  const grid = document.getElementById('calendarGrid');
+  if (!grid) return;
+
+  grid.innerHTML = '';
+
+  const now = new Date();
+  now.setDate(now.getDate() + weekOffset * 7);
+
+  const dayOfWeek = now.getDay() === 0 ? 7 : now.getDay();
+  const monday = new Date(now);
+  monday.setDate(now.getDate() - (dayOfWeek - 1));
+
+  const days = ['Пн','Вт','Ср','Чт','Пт','Сб','Вс'];
+
+  for (let i = 0; i < 7; i++) {
+    const date = new Date(monday);
+    date.setDate(monday.getDate() + i);
+
+    const dateStr = date.toISOString().split('T')[0];
+
+    const dayHomeworks = state.homeworks.filter(
+      hw => hw.deadline === dateStr
+    );
+
+    const cell = document.createElement('div');
+    cell.className = 'calendar-day';
+    if (i === 6) cell.classList.add('full'); // воскресенье
+
+    cell.innerHTML = `
+      <div class="calendar-date">
+        ${days[i]} · ${date.toLocaleDateString('ru-RU')}
+      </div>
+
+      ${dayHomeworks.map(hw => `
+        <div class="calendar-hw ${hw.done ? 'done' : ''}">
+          ${hw.subject}
+        </div>
+      `).join('')}
+    `;
+
+    grid.appendChild(cell);
+  }
+}
+
+document.getElementById('prevWeek')
+  .addEventListener('click', () => {
+    weekOffset--;
+    renderCalendar();
+  });
+
+document.getElementById('nextWeek')
+  .addEventListener('click', () => {
+    weekOffset++;
+    renderCalendar();
+  });
+
+
