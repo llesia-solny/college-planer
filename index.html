@@ -17,6 +17,7 @@
         <nav>
             <button class="nav-btn active" data-page="schedule">📅 Расписание</button>
             <button class="nav-btn" data-page="homework">📚 Домашние задания</button>
+           <button class="nav-btn" data-page="calendar">🗓 ДЗ на месяц</button>
         </nav>
     </aside>
 
@@ -76,9 +77,23 @@
 
         <!-- Homework -->
         <section class="page" id="homework">
+            <div id="homeworkList"></div>
             <h2>Домашние задания</h2>
             <button class="add-btn">＋ Добавить задание</button>
         </section>
+
+       <section class="page" id="calendar">
+          <h2>ДЗ на неделю</h2>
+
+          <div class="calendar-controls">
+            <button id="prevWeek">← Предыдущая неделя</button>
+            <button id="nextWeek">Следующая неделя →</button>
+          </div>
+
+          <div class="calendar-grid week-view" id="calendarGrid"></div>
+        </section>
+
+
 
     </main>
 
