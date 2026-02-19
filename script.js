@@ -47,7 +47,7 @@ function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
-loadState();
+//loadState();
 renderSchedule();
 renderHomeworks();
 
@@ -94,8 +94,27 @@ function openLessonModal(day, lesson = null) {
 
 saveLesson.addEventListener('click', () => {
   const name = lessonName.value.trim();
-  const start = lessonStart.value;
-  const end = lessonEnd.value;
+  const start = lessonStart.value.trim();
+  const end = lessonEnd.value.trim();
+
+  if (name === '' || start === '' || end === '') {
+    alert('Заполните все поля');
+    return;
+  }
+
+  if (end <=start) {
+    alert('Время окончания должно быть позже начала');
+    return;
+  }
+
+  const exists = state.schedule[currentDay].some(l =>
+    l.start === start && l.id != editingLessonId
+  );
+
+  if (exists) {
+    alert('Пара в это время уже существует');
+    return;
+  }
 
   if (!name || !start || !end) {
     alert('Заполните все поля');
@@ -116,8 +135,8 @@ saveLesson.addEventListener('click', () => {
     });
   }
 
-  saveState();
-  renderSchedule();
+  //saveState();
+  //renderSchedule();
   lessonModal.classList.add('hidden');
 });
 
@@ -125,7 +144,7 @@ deleteLesson.addEventListener('click', () => {
   state.schedule[currentDay] =
     state.schedule[currentDay].filter(l => l.id !== editingLessonId);
 
-  saveState();
+  //saveState();
   renderSchedule();
   lessonModal.classList.add('hidden');
 });
@@ -153,27 +172,37 @@ function renderSchedule() {
 
 
 saveHomework.addEventListener('click', () => {
-  if (!subject.value || !task.value || !deadline.value) {
+
+  const subjectValue = subject.value.trim();
+  const taskValue = task.value.trim();
+  const deadlineValue = deadline.value;
+
+  if (subjectValue === '' || taskValue === '' || deadlineValue === '') {
     alert('Заполните все поля');
+    return;
+  }
+
+  if (taskValue.length < 3) {
+    alert('Описание слишком короткое');
     return;
   }
 
   if (editingHomeworkId) {
     const hw = state.homeworks.find(h => h.id === editingHomeworkId);
-    hw.subject = subject.value;
-    hw.task = task.value;
-    hw.deadline = deadline.value;
+    hw.subject = subjectValue
+    hw.task = taskValue;
+    hw.deadline = deadlineValue;
   } else {
-    state.homeworks.push({
-      id: Date.now().toString(),
-      subject: subject.value,
-      task: task.value,
-      deadline: deadline.value,
+    addHomeworkToDB({
+      subject: subjectValue,
+      task: taskValue,
+      deadline: deadlineValue,
       done: false
     });
+
   }
 
-    saveState();
+   // saveState();
     renderHomeworks();
     renderCalendar();
     homeworkModal.classList.add('hidden');
@@ -217,15 +246,17 @@ function renderHomeworks() {
     // ✔ выполнено
     div.querySelector('input').addEventListener('change', (e) => {
       hw.done = e.target.checked;
-      saveState();
+     // saveState();
       renderHomeworks();
     });
 
     // ✏️ редактирование
     div.querySelector('.edit-btn').addEventListener('click', () => {
-      subject.value = hw.subject;
-      task.value = hw.task;
-      deadline.value = hw.deadline;
+      updateHomeworkInDB(editingHomeworkId, {
+          subject: subjectValue,
+          task: taskValue,
+          deadline: deadlineValue
+        });
 
       editingHomeworkId = hw.id;
       homeworkModal.classList.remove('hidden');
@@ -233,9 +264,11 @@ function renderHomeworks() {
 
     // ❌ удалить
     div.querySelector('.delete-btn').addEventListener('click', () => {
-      state.homeworks = state.homeworks.filter(h => h.id !== hw.id);
-      saveState();
-      renderHomeworks();
+      //state.homeworks = state.homeworks.filter(h => h.id !== hw.id);
+      //saveState();
+      //renderHomeworks();
+      deleteHomeworkFromDB(hw.id);
+
     });
 
     container.appendChild(div);
