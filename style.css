@@ -78,14 +78,20 @@ h2 {
 
 /* ================= CARDS ================= */
 .card {
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 16px 20px;
-  box-shadow: 0 10px 30px rgba(255, 209, 220, 0.4);
-  margin-bottom: 14px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background:rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: 18px;
+  padding: 18x 22px;
+  margin-bottom: 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow:
+  0 8px 32px rgba(255, 192, 203, 0.25),
+  inset 0 0 0 1px rgba(255, 255, 255, 0.3);
+
+ transition: all 0.5s ease;
 }
 
 .subject {
@@ -204,10 +210,17 @@ h2 {
 }
 
 .day-card {
-  background: #ffffff;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(18px);
+  border-radius: 22px;
   padding: 20px;
-  box-shadow: 0 15px 40px rgba(255, 209, 220, 0.5);
+
+  border: 1px solid rgba(255, 255, 255, 0.4);
+
+  box-shadow:
+  0 10px 40px rgba(255, 182, 193, 0.25);
+
+  transition: all 0.35s ease;
 }
 
 .day-card h3 {
@@ -607,5 +620,38 @@ h2 {
 .calendar-hw.done {
   opacity: 0.5;
   text-decoration: line-through;
+}
+
+@keyframes fadeInUp{
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+.lesson,
+.card {
+    animation: fadeInUp 0.35s ease;
+}
+
+.removing {
+    opacity: 0;
+    transform: translateX(40px);
+    transition: 0.3s ease;
+}
+
+.card:hover,
+.day-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 15px 50px rgba(255, 182, 193, 0.35);
+}
+
+.lesson:hover {
+  transform: scale(1.03);
 }
 
